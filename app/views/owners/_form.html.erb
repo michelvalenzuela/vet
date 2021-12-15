@@ -1,0 +1,37 @@
+<%= form_with(model: owner, local: true) do |form| %>
+  <div class="w-1/3 mx-auto">
+    <% if owner.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
+
+        <ul>
+          <% owner.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name, "Nombre" %>
+      <%= form.text_field :name, class: "border-2 rounded pl-2 py-1 w-full" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :phone_number, "Número de Teléfono" %>
+      <%= form.text_field :phone_number, class: "border-2 rounded pl-2 py-1 w-full" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :email, "Correo" %>
+      <%= form.text_field :email, class: "border-2 rounded pl-2 py-1 w-full" %>
+    </div>
+  </div>
+
+  <div class="flex mt-6 w-1/3 justify-between mx-auto">
+    <%= form.submit "Guardar", class: "bg-green-700 hover:bg-green-800 text-white px-5 py-1 cursor-pointer rounded hover:shadow" %>
+    <%= link_to 'Regresar', owners_path, class: "bg-gray-700 hover:bg-gray-800 text-white px-5 py-1 rounded hover:shadow" %>
+  </div>
+
+<% end %>
+

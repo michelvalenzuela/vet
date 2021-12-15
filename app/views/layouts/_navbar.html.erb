@@ -1,0 +1,28 @@
+<div class="bg-gray-900 shadow-lg">
+    <div class="container mx-auto flex space-x-5 p-3  text-white">
+    <%= link_to root_path do %>
+        <img src="https://toppetgifts.com/wp-content/uploads/cropped-Top-Pet-Gifts-icon.png" alt="" class="w-16 h-16">
+    <% end %>
+
+        <div class="space-x-2 my-auto">
+            <%= link_to owners_path do %>
+            <span class="p-2 transition ease-in-out hover:bg-white hover:text-gray-900 px-5 rounded-full cursor-pointer font-medium">
+                Clientes
+            </span>
+            <% end %>
+
+            <%= link_to pets_path do %>
+            <span class="p-2 transition ease-in-out hover:bg-white hover:text-gray-900 px-5 rounded-full cursor-pointer font-medium">
+                Mascotas
+            </span>
+            <% end %>
+
+            <%= link_to pet_histories_path do %>
+            <span class="p-2 transition ease-in-out hover:bg-white hover:text-gray-900 px-5 rounded-full cursor-pointer font-medium">
+                Consultas
+            </span>
+            <% end %>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="max-w-5xl mx-auto bg-gray-50 p-3 rounded-md">
+  <p id="notice"><%= notice %></p>
+
+  <div class="flex w-full w-1/3 space-x-1 justify-end">
+    <%= link_to 'Editar', edit_pet_path(@pet), class: "bg-green-700 hover:bg-green-800 text-white px-5 py-1 cursor-pointer rounded hover:shadow" %>
+    <%= link_to 'Regresar', pets_path, class: "bg-gray-700 hover:bg-gray-800 text-white px-5 py-1 rounded hover:shadow" %>
+  </div>
+
+  <div class="ml-10">
+    <p>
+      <strong class="select-none">Nombre:</strong>
+      <%= @pet.name %>
+    </p>
+
+    <p>
+      <strong class="select-none">Raza:</strong>
+      <%= @pet.race %>
+    </p>
+
+    <p>
+      <strong class="select-none">Fecha de Nacimiento:</strong>
+      <%= @pet.birthdate %>
+    </p>
+
+    <p>
+      <strong class="select-none">Dueño:</strong>
+      <%= @pet.owner.name %>
+    </p>
+
+    <p>
+      <strong class="select-none">Visitas:</strong>
+      <%= @pet.pet_histories.count %>
+    </p>
+  </div>
+
+  <div class="max-w-5xl border-dotted py-5 my-5">
+    <table class="mx-auto">
+      <thead>
+        <tr class="text-center">
+          <th class="px-5">Peso promedio</th>
+          <th class="px-5">Altura promedio</th>
+          <th class="px-5">Peso Máximo</th>
+          <th class="px-5">Altura Máxima</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr>
+          <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= @pet.avg_weight %></td>
+          <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= @pet.avg_height %></td>
+          <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= @pet.max_weight %></td>
+          <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= @pet.max_height%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% if @pet.pet_histories.count > 0 %>  
+    <div class="max-w-5xl border-dotted py-5 my-5">
+      <table class="mx-auto">
+        <thead>
+          <tr class="text-center">
+            <th class="px-5">Fecha</th>
+            <th class="px-5">Altura</th>
+            <th class="px-5">Peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pet.pet_histories.each do |this_pet|  %>
+            <tr>
+              <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= this_pet.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y a las %H:%M") %></td>
+              <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= this_pet.heigth %></td>
+              <td class="bg-gray-100 px-2 py-1 rounded border-2 px-10 text-center"><%= this_pet.weight %></td> 
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

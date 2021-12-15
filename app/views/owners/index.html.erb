@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<div class="max-w-5xl mx-auto mt-10 flex justify-between">
+  <h1 class="text-4xl mb-5 select-none">Clientes</h1>
+  <%= link_to new_owner_path, class: "my-auto" do %>
+    <span class="p-2 px-5 mr-2 bg-gray-700 transition ease-in-out hover:bg-gray-900 text-white rounded-full">Nuevo Cliente</span>
+  <% end %>
+</div>
+
+<div class="max-w-5xl mx-auto border-2 p-1 rounded-md border-dotted">
+  <table class="w-full">
+    <thead class="text-left select-none">
+      <tr class="bg-gray-700 text-white">
+        <th class="p-3 rounded-l text-center">Mascotas</th>
+        <th class="p-3">Nombre</th>
+        <th class="p-3">Número</th>
+        <th class="p-3">Email</th>
+        <th class="p-3 text-right rounded-r">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @owners.each do |owner| %>
+        <tr class="group hover:bg-gray-50">
+          <td class="p-2 mx-auto">
+            <div class="flex h-8 w-8 text-white bg-indigo-200 transition delay-75 ease-in-out group-hover:bg-indigo-800 group-hover:shadow-md mx-auto rounded-full">
+              <span class="mx-auto my-auto select-none">
+                <%= owner.pets.count %>
+              </span>
+            </div>
+          </td>
+          <td class="p-2"><%= owner.name %></td>
+          <td class="p-2"><%= owner.phone_number %></td>
+          <td class="p-2"><%= owner.email %></td>
+
+          <td>
+            <div class="flex justify-end space-x-2">
+              <%= link_to owner do %>
+                <span class="px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Mostrar</span>
+              <% end %>
+
+              <%= link_to edit_owner_path(owner) do %>
+                <span class="px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Editar</span>
+              <% end %>
+
+              <%= link_to owner, method: :delete, data: { confirm: '¿Seguro?' } do %>
+                <span class="ml-5 px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Eliminar</span>
+              <% end %>
+            </div>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>

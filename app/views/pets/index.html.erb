@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<div class="max-w-5xl mx-auto mt-10 flex justify-between">
+  <h1 class="text-4xl mb-5 select-none">Mascotas</h1>
+  <%= link_to new_pet_path, class: "my-auto" do %>
+    <span class="p-2 px-5 mr-2 bg-green-700 transition ease-in-out hover:bg-green-900 text-white rounded-full">Nueva Mascota</span>
+  <% end %>
+</div>
+
+<div class="max-w-5xl mx-auto border-2 p-1 rounded-md border-dotted">
+  <table class="w-full">
+    <thead class="text-left select-none">
+      <tr class="bg-green-700 text-white">
+        <th class="p-3 rounded-l">Nombre</th>
+        <th class="p-3">Raza</th>
+        <th class="p-3 text-center">Fecha Nacimiento</th>
+        <th class="p-3 text-center">Visitas</th>
+        <th class="p-3 text-right rounded-r">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pets.each do |pet| %>
+        <tr class="group hover:bg-gray-50">
+          <td class="p-2 mx-auto"><%= pet.name %></td>
+          <td class="p-2"><%= pet.race %></td>
+          <td class="p-2 text-center"><%= pet.birthdate %></td>
+          <td class="p-2 text-center"><%= pet.history_count%></td>
+
+          <td>
+            <div class="flex justify-end space-x-2">
+
+              <%= link_to pet do %>
+                <span class="px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Mostrar</span>
+              <% end %>
+
+              <%= link_to edit_pet_path(pet) do %>
+                <span class="px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Editar</span>
+              <% end %>
+
+              <%= link_to pet, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="ml-5 px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Eliminar</span>
+              <% end %>
+
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+

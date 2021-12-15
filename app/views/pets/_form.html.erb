@@ -1,0 +1,40 @@
+<%= form_with(model: pet, local: true) do |form| %>
+  <div class="w-1/3 mx-auto">
+    <% if pet.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+
+        <ul>
+        <% pet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name, "Nombre" %>
+      <%= form.text_field :name, class: "border-2 rounded pl-2 py-1 w-full" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :race, "Raza" %>
+      <%= form.text_field :race, class: "border-2 rounded pl-2 py-1 w-full" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :birthdate, "Fecha de Nacimiento" %>
+      <%= form.text_field :birthdate, type: "date", class: "border-2 rounded px-2 py-1 w-full" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :owner_id, "Dueño" %>
+      <%= form.collection_select :owner_id, Owner.order(:name), :id, :name, {}, {class: "border-2 rounded px-2 py-1 w-full bg-white"} %>
+    </div>
+  </div>
+  
+  <div class="flex mt-6 w-1/3 justify-between mx-auto">
+    <%= form.submit "Guardar", class: "bg-green-700 hover:bg-green-800 text-white px-5 py-1 cursor-pointer rounded hover:shadow" %>
+    <%= link_to 'Regresar', pets_path, class: "bg-gray-700 hover:bg-gray-800 text-white px-5 py-1 rounded hover:shadow" %>
+  </div>
+<% end %>

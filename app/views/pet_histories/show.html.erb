@@ -1,0 +1,35 @@
+<div class="max-w-5xl mx-auto bg-gray-50 p-3 pb-10 rounded-md">
+  <p id="notice"><%= notice %></p>
+
+  <div class="flex w-full w-1/3 space-x-1 justify-end">
+    <%= link_to 'Editar', edit_pet_history_path(@pet_history), class: "bg-green-700 hover:bg-green-800 text-white px-5 py-1 cursor-pointer rounded hover:shadow" %>
+    <%= link_to 'Regresar', pet_histories_path, class: "bg-gray-700 hover:bg-gray-800 text-white px-5 py-1 rounded hover:shadow" %>
+  </div>
+
+  <div class="ml-10">
+    <p>
+      <strong class="select-none">Dueño</strong>
+      <%= @pet_history.pet.owner.name %>
+    </p>
+
+    <p>
+      <strong class="select-none">Nombre Mascota</strong>
+      <%= @pet_history.pet.name %>
+    </p>
+
+    <p>
+      <strong class="select-none">Peso</strong>
+      <%= @pet_history.weight %>
+    </p>
+
+    <p>
+      <strong class="select-none">Altura</strong>
+      <%= @pet_history.heigth %>
+    </p>
+
+    <p>
+      <strong class="select-none">Descripción</strong>
+      <%= @pet_history.description %>
+    </p>
+  </div>
+</div>

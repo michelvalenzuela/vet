@@ -1,0 +1,8 @@
+{
+  "name": "unit7-challenge_vet",
+  "private": true,
+  "dependencies": {
+    "autoprefixer": "9",
+    "postcss": "7"
+  }
+}

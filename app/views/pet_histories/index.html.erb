@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<div class="max-w-5xl mx-auto mt-10 flex justify-between">
+  <h1 class="text-4xl mb-5 select-none">Consultas</h1>
+  <%= link_to new_pet_history_path, class: "my-auto" do %>
+    <span class="p-2 px-5 mr-2 bg-yellow-700 transition ease-in-out hover:bg-yellow-900 text-white rounded-full">Nueva Visita</span>
+  <% end %>
+</div>
+
+<div class="max-w-5xl mx-auto border-2 p-1 rounded-md border-dotted">
+  <table class="w-full">
+    <thead class="text-left select-none">
+      <tr class="bg-yellow-700 text-white">
+        <th class="p-3 rounded-l">Fecha</th>
+        <th class="p-3">Dueño</th>
+        <th class="p-3">Mascota</th>
+        <th class="p-3">Peso</th>
+        <th class="p-3">Altura</th>
+        <th class="p-3">Descripción</th>
+        <th class="p-3 text-right rounded-r">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pet_histories.each do |pet_history| %>
+        <tr class="group hover:bg-gray-50">
+          <td class="p-2 mx-auto"><%= pet_history.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y a las %H:%M") %></td>
+          <td class="p-2"><%= pet_history.pet.owner.name %></td>
+          <td class="p-2"><%= pet_history.pet.name %></td>
+          <td class="p-2"><%= pet_history.weight %></td>
+          <td class="p-2"><%= pet_history.heigth %></td>
+          <td class="p-2 truncate text-sm max-w-xs"><%= pet_history.description %></td>
+          <td>
+            <div class="flex justify-end space-x-2">
+              <%= link_to pet_history do %>
+                <span class="px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Mostrar</span>
+              <% end %>
+
+              <%= link_to edit_pet_history_path(pet_history) do %>
+                <span class="px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Editar</span>
+              <% end %>
+
+              <%= link_to pet_history, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="ml-5 px-2 py-1 rounded bg-gray-100 transition delay-75 ease-in-out group-hover:bg-gray-800 text-white">Eliminar</span>
+              <% end %>
+
+            </div>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
